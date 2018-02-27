@@ -1,60 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8">
-    <title>Chardin.js</title>
+    <title>Instruction</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Chardin.js - Better introductions for websites and features with a step-by-step guide for your projects.">
-    <meta name="author" content="Pablo Fernandez">
+    <meta name="author" content="Timothy Luciani">
 
     <!-- styles -->
     <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
-    <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/demo.css" rel="stylesheet">
-
     <link href="../chardinjs.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-    <link href="css/bootstrap-responsive.min.css" rel="stylesheet">
+    <!-- JS -->
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="./js/jquery-2.2.4.min.js"></script>
 
-    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-    <script src="../chardinjs.min.js"></script>
-    <script src="js/demo.js"></script>
-    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-  </head>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 
-  <body>
-    <div class="container">
-      <div class="jumbotron">
-        <h1 data-intro="Project title" data-position="right">Chardin.js</h1>
-        <p class="lead">
-          Simple overlay instructions for your apps.
-        </p>
-        <img src="img/chardin.png" data-intro="An awesome 18th-century painter, who found beauty in everyday, common things." data-position="right" />
-        <a href="#" class="btn btn-large primary" data-toggle="chardinjs" data-intro="This button toggles the overlay, you can click it, even when the overlay is visible" data-position="left">See it in action</a>
-        <a href="" id="opentour" class="hide" data-toggle="chardinjs">Or open it again</a>
-        <div class="credits">
-          <p data-intro="Author of this plugin, aka Pablo Fernandez" data-position="right">
-            Baked with
-            <b>&lt;3</b>
-            by
-            <a href="https://github.com/heelhook">@heelhook</a>.
-          </p>
-        </div>
-      </div>
+    <script src="../chardinjs.js"></script>
+    <script src="./js/example.js"></script>
 
+<body>
 
-        <div class="links">
-          <p id="links" data-intro="Links to Github, Twitter, etc." data-position="top">
-            <a href="https://twitter.com/share" class="twitter-share-button" data-lang="en" data-text="Check out Chardin.js, simple overlay instructions for apps, https://heelhook.github.com/chardin.js" data-count="none" data-via="pablo2dot0">Tweet</a>
-            <a href="https://twitter.com/pablo2dot0" class="twitter-follow-button" data-show-count="false" data-lang="en">Follow @pablo2dot0</a>
-            <iframe style="display: inline-block;" frameborder="no" scrolling="no" height="30px" width="70px" src="http://hnlike.com/upvote.php?link=http%3A%2F%2Fheelhook.github.com&title=Chardin">iframes not supported by your browser</iframe>
-          </p>
-        </div>
+    <nav class="navbar navbar-light bg-light">
+        <button id="instructions" type="button" class="btn btn-success">Instructions</button>
+    </nav>
 
-      <div class="license">
-        Code licensed under the
-        <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License v2.0</a>.
-      </div>
-    </div>
-  </body>
+    <svg id="demoSVG" width="960" height="500"></svg>
+
+    <!--<svg class="shape-overlays">-->
+        <!--<defs>-->
+            <!--<mask id="maskedtext">-->
+                <!--<rect  width="100%" height="100%" opacity="50" fill="white"/>-->
+                <!--<rect x="19" y="161" width="50" height="50"></rect>-->
+            <!--</mask>-->
+        <!--</defs>-->
+
+        <!--<rect x="0" y="0" width="100%" height="100%" fill-opacity="0.4" style="stroke: none; fill: #0000ff; mask: url(#maskedtext)"/>-->
+
+    <!--</svg>-->
+
+</body>
 </html>
