@@ -150,7 +150,7 @@
         }
         else {
           element_position = this._get_offset(this.$el.get()[0]);
-          styleText = "width: " + element_position.width + "px; height:" + element_position.height +
+          styleText = "width: " + element_position.width + "px; height:" + parseInt(element_position.height) +
                       "px; top:" + element_position.top + "px;left: " + element_position.left + "px;";
           overlay_layer = "<svg class=\"shape-overlays\"><defs><mask id=\"maskedElements\"><rect style=\""+styleText+"\"/>";
         }
