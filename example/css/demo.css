@@ -17,11 +17,3 @@
 body {
     /*background-color: #00ff00 !important;*/
 }
-
-.shape-overlays {
-    width: 100vw;
-    height: 100vh;
-    position: fixed;
-    top: 0;
-    left: 0;
-}
