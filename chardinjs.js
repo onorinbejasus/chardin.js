@@ -97,9 +97,13 @@
 
       stop() {
         let css, i, len, ref;
-        this.$el.find(".chardinjs-overlay").fadeOut(function() {
-          return $(this).remove();
-        });
+
+        if(this.isSVG){
+          this.$el.find("svg.shape-overlays").fadeOut(function() { return $(this).remove(); });
+        }
+        else {
+          this.$el.find(".chardinjs-overlay").fadeOut(function() { return $(this).remove(); });
+        }
 
         this.$el.find('.chardinjs-helper-layer').remove();
         ref = this.chardinCssClasses;
@@ -139,10 +143,24 @@
           return false;
         }
 
-        element_position = this._get_offset(this.$el.get()[0]);
-
-        overlay_layer =
+        if (this.$el.prop('tagName') === "BODY") {
+          /* Create the SVG overlays */
+          overlay_layer =
             '<svg class="shape-overlays"><defs><mask id="maskedElements"><rect class="overlay-rect"/>';
+          // overlay_layer = document.createElementNS ("http://www.w3.org/2000/svg", "svg");
+          // overlay_layer.setAttributeNS (null, "class", "shape-overlay");
+          // $(overlay_layer).append("<defs><mask id=\"maskedElements\"><rect class=\"overlay-rect\"/></mask></defs><rect x="0" y="0" class="svgOverlay"/></svg>");
+        }
+        else {
+          //element_position = this._get_offset(this.$el.get()[0]);
+          //styleText = "width: " + element_position.width + "px; height:" + element_position.height + "px; top:" + element_position.top + "px;left: " + element_position.left + "px;";
+
+          overlay_layer = document.createElementNS ("http://www.w3.org/2000/svg", "svg");
+          overlay_layer.setAttributeNS (null, "class", "shape-overlay");
+          overlay_layer.add("<defs><mask id=\"maskedElements\"><rect style=\"'+styleText+'\"/></mask></defs>")
+
+          //'<svg class="shape-overlays"><defs><mask id="maskedElements"><rect style="'+styleText+'"/>';
+        }
 
         /* Iterate over the svg elements and add them to the mask */
         elements.forEach(function(el){
@@ -158,26 +176,14 @@
           mask = mask + svgEl;
         });
 
+        /* Append the masking elements to the mask */
+        // $(overlay_layer).find("#maskedElements").append(mask);
         overlay_layer +=
-            mask + '</mask></defs><rect x="0" y="0" class="svgOverlay"/></svg>';
-
-        /* Create the SVG overlays */
-        this.$el.append(overlay_layer);
-
-        element_position = this._get_offset(this.$el.get()[0]);
-        if (element_position) {
-          styleText += "width: " + element_position.width + "px; height:" + element_position.height + "px; top:" + element_position.top + "px;left: " + element_position.left + "px;";
-          overlay_layer.setAttribute("style", styleText);
-        }
+          mask + '</mask></defs><rect x="0" y="0" class="svgOverlay"/></svg>';
 
         /* Add the overlay and set its click event */
-        // this.$el.get()[0].appendChild(overlay_layer);
-        // overlay_layer.onclick = () => { this.stop(); };
-        //
-        // setTimeout(function() {
-        //   styleText += "opacity: .8;opacity: .8;-ms-filter: 'progid:DXImageTransform.Microsoft.Alpha(Opacity=80)';filter: alpha(opacity=80);";
-        //   return overlay_layer.setAttribute("style", styleText);
-        // }, 10);
+        this.$el.append(overlay_layer);
+        this.$el.find(".svgOverlay").on("click",() => { this.stop(); });
       }
 
       _add_overlay_layer() {
