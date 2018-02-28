@@ -143,23 +143,16 @@
           return false;
         }
 
+        /* Create the SVG overlays */
         if (this.$el.prop('tagName') === "BODY") {
-          /* Create the SVG overlays */
           overlay_layer =
-            '<svg class="shape-overlays"><defs><mask id="maskedElements"><rect class="overlay-rect"/>';
-          // overlay_layer = document.createElementNS ("http://www.w3.org/2000/svg", "svg");
-          // overlay_layer.setAttributeNS (null, "class", "shape-overlay");
-          // $(overlay_layer).append("<defs><mask id=\"maskedElements\"><rect class=\"overlay-rect\"/></mask></defs><rect x="0" y="0" class="svgOverlay"/></svg>");
+            "<svg class=\"shape-overlays\"><defs><mask id=\"maskedElements\"><rect class=\"overlay-rect\"/>";
         }
         else {
-          //element_position = this._get_offset(this.$el.get()[0]);
-          //styleText = "width: " + element_position.width + "px; height:" + element_position.height + "px; top:" + element_position.top + "px;left: " + element_position.left + "px;";
-
-          overlay_layer = document.createElementNS ("http://www.w3.org/2000/svg", "svg");
-          overlay_layer.setAttributeNS (null, "class", "shape-overlay");
-          overlay_layer.add("<defs><mask id=\"maskedElements\"><rect style=\"'+styleText+'\"/></mask></defs>")
-
-          //'<svg class="shape-overlays"><defs><mask id="maskedElements"><rect style="'+styleText+'"/>';
+          element_position = this._get_offset(this.$el.get()[0]);
+          styleText = "width: " + element_position.width + "px; height:" + element_position.height +
+                      "px; top:" + element_position.top + "px;left: " + element_position.left + "px;";
+          overlay_layer = "<svg class=\"shape-overlays\"><defs><mask id=\"maskedElements\"><rect style=\""+styleText+"\"/>";
         }
 
         /* Iterate over the svg elements and add them to the mask */
@@ -167,7 +160,8 @@
           let svgEl = "";
           switch(el.element.tagName){
             case "rect":
-              svgEl = '<rect x="' + el.position.left + '" y="' + el.position.top + '" width="' + el.position.width + '" height="' + el.position.height + '"></rect>';
+              svgEl = "<rect x=\"" + el.position.left + "\" y=\"" + el.position.top + "\" width=\"" + el.position.width
+                    + "\" height=\"" + el.position.height + "\"></rect>";
               break;
             case "circle":
               //svgEl = '<circle cx="' + el.position.left + '" cy="' + el.position.top + '" r="' + el.element.get + '></circle>'
@@ -177,9 +171,7 @@
         });
 
         /* Append the masking elements to the mask */
-        // $(overlay_layer).find("#maskedElements").append(mask);
-        overlay_layer +=
-          mask + '</mask></defs><rect x="0" y="0" class="svgOverlay"/></svg>';
+        overlay_layer += mask + "</mask></defs><rect x=\"0\" y=\"0\" class=\"svgOverlay\"/></svg>";
 
         /* Add the overlay and set its click event */
         this.$el.append(overlay_layer);
