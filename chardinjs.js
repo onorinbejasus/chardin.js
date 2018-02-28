@@ -138,6 +138,9 @@
         if (this._overlay_visible()) {
           return false;
         }
+
+        element_position = this._get_offset(this.$el.get()[0]);
+
         overlay_layer =
             '<svg class="shape-overlays"><defs><mask id="maskedElements"><rect class="overlay-rect"/>';
 
@@ -161,17 +164,11 @@
         /* Create the SVG overlays */
         this.$el.append(overlay_layer);
 
-        // if (this.$el.prop('tagName') === "BODY") {
-        //   styleText += "top: 0;bottom: 0; left: 0;right: 0; position: fixed;";
-        //   overlay_layer.setAttribute("style", styleText);
-        // }
-        // else {
-        //   element_position = this._get_offset(this.$el.get()[0]);
-        //   if (element_position) {
-        //     styleText += "width: " + element_position.width + "px; height:" + element_position.height + "px; top:" + element_position.top + "px;left: " + element_position.left + "px;";
-        //     overlay_layer.setAttribute("style", styleText);
-        //   }
-        // }
+        element_position = this._get_offset(this.$el.get()[0]);
+        if (element_position) {
+          styleText += "width: " + element_position.width + "px; height:" + element_position.height + "px; top:" + element_position.top + "px;left: " + element_position.left + "px;";
+          overlay_layer.setAttribute("style", styleText);
+        }
 
         /* Add the overlay and set its click event */
         // this.$el.get()[0].appendChild(overlay_layer);
