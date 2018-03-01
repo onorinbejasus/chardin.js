@@ -134,7 +134,7 @@
       }
 
       _overlay_visible() {
-        if(this.isSVG) return this.$el.find('.chardinjs-overlay').length !== 0;
+        if(this.isSVG) return this.$el.find('.svgOverlay').length !== 0;
         else return this.$el.find('.chardinjs-overlay').length !== 0;
       }
 
